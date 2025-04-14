@@ -5,7 +5,7 @@ import {
   updateMyProfile,
   deleteMyProfile,
 } from "../controllers/profile.controller.js";
-import { auth } from "../middlewares/auth.middleware.js/";
+import { auth } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/upload.middleware.js";
 import FileController from "../controllers/file.controller.js";
 
