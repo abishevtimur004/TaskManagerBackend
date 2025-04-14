@@ -24,7 +24,11 @@ export const register = async (req, res) => {
     });
     await user.save();
 
-    const profile = new Profile({ user: user._id });
+    const profile = new Profile({
+      user: user._id,
+      firstName,
+      lastName,
+    });
     await profile.save();
 
     const token = jwt.sign({ userId: user._id }, "secretkey", {
@@ -37,6 +41,7 @@ export const register = async (req, res) => {
     });
   } catch (error) {
     console.error("Ошибка регистрации:", error);
+    console.error(error.stack);
     if (!res.headersSent) {
       return res
         .status(500)
