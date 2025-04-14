@@ -69,6 +69,7 @@ export const login = async (req, res) => {
 
     res.json({ token });
   } catch (error) {
+    console.error("Ошибка входа:", error.message);
     res.status(500).json({ error: "Error logging in" });
   }
 };

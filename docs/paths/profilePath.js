@@ -101,6 +101,39 @@ const profilePath = {
       },
     },
   },
+  "/api/profile/avatar": {
+    put: {
+      tags: ["Avatar"],
+      summary: "Обновить аватар профиля",
+      security: [{ bearerAuth: [] }],
+      requestBody: {
+        required: true,
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                avatar: { type: "string", example: "/uploads/new-avatar.jpg" },
+              },
+            },
+          },
+        },
+      },
+      responses: {
+        200: {
+          description: "Аватар профиля обновлён",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/Profile" },
+            },
+          },
+        },
+        404: {
+          description: "Аватар не найден",
+        },
+      },
+    },
+  },
 };
 
 export default profilePath;

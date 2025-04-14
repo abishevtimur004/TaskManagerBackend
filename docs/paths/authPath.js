@@ -25,7 +25,7 @@ const authPaths = {
                 },
                 email: {
                   type: "string",
-                  description: "Email address of user",
+                  description: "Адрес электронной почты пользователя",
                   example: "example@mail.kz",
                 },
                 password: {
@@ -58,7 +58,7 @@ const authPaths = {
               properties: {
                 email: {
                   type: "string",
-                  description: "Email address of user",
+                  description: "Адрес электронной почты пользователя",
                   example: "example@mail.kz",
                 },
                 password: {
