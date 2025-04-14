@@ -1,6 +1,7 @@
 import swaggerUi from "swagger-ui-express";
 import userSchema from "./docs/schemas/user.js";
-import authPaths from "./docs/paths/auth.js";
+import authPaths from "./docs/paths/authPath.js";
+import profilePath from "./docs/paths/profilePath.js";
 
 const swaggerDoc = {
   openapi: "3.1.1",
@@ -26,6 +27,7 @@ const swaggerDoc = {
   },
   paths: {
     ...authPaths,
+    ...profilePath
   },
 };
 
