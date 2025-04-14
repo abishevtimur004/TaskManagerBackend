@@ -3,13 +3,12 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 import { hashPassword, comparePasswords } from "../utils/bcrypt.js";
 
-const JWT_SECRET = process.env.JWT_SECRET; 
+const JWT_SECRET = process.env.JWT_SECRET;
 console.log("JWT_SECRET:", JWT_SECRET);
 
 export const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
-
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -17,25 +16,34 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await hashPassword(password);
-    const user = await new User({
+    const user = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
     });
     await user.save();
-    res.status(201).json({ user: user });
 
     const profile = new Profile({ user: user._id });
     await profile.save();
 
-    const token = jwt.sign({ userId: User._id }, "secretkey", {
+    const token = jwt.sign({ userId: user._id }, "secretkey", {
       expiresIn: "12h",
     });
 
-    res.status(201).json({ token });
+    // ✅ Один ответ
+    return res.status(201).json({
+      message: "Пользователь успешно зарегистрирован",
+      user,
+      token,
+    });
   } catch (error) {
-    res.status(500).json({ error: "Error creating user" });
+    console.error("Ошибка регистрации:", error);
+    if (!res.headersSent) {
+      return res
+        .status(500)
+        .json({ error: "Ошибка при создании пользователя" });
+    }
   }
 };
 
@@ -73,7 +81,6 @@ export const getProfile = async (req, res) => {
     res.status(500).json({ error: "Ошибка при обновлении пользователя" });
   }
 };
-
 
 export const updateUser = async (req, res) => {
   try {
