@@ -11,7 +11,11 @@ const swaggerDoc = {
   },
   servers: [
     {
-      url: "http://localhost:3000", // добавь сервер
+      url: "https://taskmanagerbackend-3ee1.onrender.com", 
+      description: "Прод сервер (Render)",
+    },
+    {
+      url: "http://localhost:3000",
       description: "Локальный сервер",
     },
   ],
