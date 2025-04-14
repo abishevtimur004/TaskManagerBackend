@@ -22,27 +22,29 @@ const connectDB = async () => {
   }
 };
 
-
 const startServer = async () => {
   try {
-
     await connectDB();
 
     app.use(cors());
     app.use(express.json());
 
     app.use("/api/users", userRoutes);
-    app.use("/api/profile", profileRoutes); 
+    app.use("/api/profile", profileRoutes);
+    app.post("/ping", (req, res) => {
+      res.send("pong");
+    });
 
     app.use("/uploads", express.static("uploads"));
+
+    setupSwagger(app);
 
     app.use((err, req, res, next) => {
       console.error(err.stack);
       res.status(500).json({ error: "Something broke!" });
     });
-    
+
     app.listen(PORT, () => {
-      setupSwagger(app);
       console.log(`Сервер запущен на http://localhost:${PORT}`);
     });
   } catch (error) {
