@@ -1,6 +1,7 @@
 import "../config.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
+import { Profile } from "../models/profile.js";
 import { hashPassword, comparePasswords } from "../utils/bcrypt.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
