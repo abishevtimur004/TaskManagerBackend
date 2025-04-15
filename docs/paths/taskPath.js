@@ -1,4 +1,4 @@
-import taskSchema from "../schemas/task.js"; 
+import taskSchema from "../schemas/task.js";
 
 const taskPath = {
   "/api/task": {
@@ -50,7 +50,7 @@ const taskPath = {
       },
     },
   },
-  "/api/tasks/{id}": {
+  "/api/task/{id}": {
     get: {
       tags: ["Tasks"],
       summary: "Получить задачу по ID",
