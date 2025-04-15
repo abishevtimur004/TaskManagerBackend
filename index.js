@@ -17,7 +17,7 @@ const connectDB = async () => {
     console.log("Connected to MongoDB successfully");
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
-    process.exit(1); 
+    process.exit(1);
   }
 };
 
@@ -25,7 +25,12 @@ const startServer = async () => {
   try {
     await connectDB();
 
-    app.use(cors());
+    app.use(
+      cors({
+        origin: "http://localhost:5173",
+        credentials: true,
+      })
+    );
     app.use(express.json());
 
     app.use("/api/users", userRoutes);
