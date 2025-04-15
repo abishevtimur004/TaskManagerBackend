@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
+import taskRoutes from "./routes/taskRoutes.js"
 import { setupSwagger } from "./swagger.js";
 
 const app = express();
@@ -35,9 +36,8 @@ const startServer = async () => {
 
     app.use("/api/users", userRoutes);
     app.use("/api/profile", profileRoutes);
-    app.post("/ping", (req, res) => {
-      res.send("pong");
-    });
+    app.use("/api/task", taskRoutes);
+ 
 
     app.use("/uploads", express.static("uploads"));
 

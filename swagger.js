@@ -2,6 +2,9 @@ import swaggerUi from "swagger-ui-express";
 import userSchema from "./docs/schemas/user.js";
 import authPaths from "./docs/paths/authPath.js";
 import profilePath from "./docs/paths/profilePath.js";
+import profileSchema from "./docs/schemas/profile.js";
+import taskSchema from "./docs/schemas/task.js";
+import taskPath from "./docs/paths/taskPath.js";
 
 const swaggerDoc = {
   openapi: "3.1.1",
@@ -12,7 +15,7 @@ const swaggerDoc = {
   },
   servers: [
     {
-      url: "https://taskmanagerbackend-3ee1.onrender.com", 
+      url: "https://taskmanagerbackend-3ee1.onrender.com",
       description: "Прод сервер (Render)",
     },
     {
@@ -23,11 +26,14 @@ const swaggerDoc = {
   components: {
     schemas: {
       User: userSchema,
+      Profile: profileSchema,
+      Task: taskSchema,
     },
   },
   paths: {
     ...authPaths,
-    ...profilePath
+    ...profilePath,
+    ...taskPath,
   },
 };
 

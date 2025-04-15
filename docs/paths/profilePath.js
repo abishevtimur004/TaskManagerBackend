@@ -1,3 +1,5 @@
+import profileSchema from "../schemas/profile.js"
+
 const profilePath = {
   "/api/profile": {
     get: {
@@ -26,16 +28,7 @@ const profilePath = {
         required: true,
         content: {
           "application/json": {
-            schema: {
-              type: "object",
-              required: ["firstName", "lastName"],
-              properties: {
-                firstName: { type: "string", example: "Daniyar" },
-                lastName: { type: "string", example: "Abishev" },
-                bio: { type: "string", example: "Fullstack developer" },
-                avatar: { type: "string", example: "/uploads/avatar.jpg" },
-              },
-            },
+            schema: profileSchema,
           },
         },
       },
@@ -61,15 +54,7 @@ const profilePath = {
         required: true,
         content: {
           "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                firstName: { type: "string", example: "Dan" },
-                lastName: { type: "string", example: "Aby" },
-                bio: { type: "string", example: "Node.js developer" },
-                avatar: { type: "string", example: "/uploads/new-avatar.jpg" },
-              },
-            },
+            schema: profileSchema,
           },
         },
       },
@@ -110,12 +95,7 @@ const profilePath = {
         required: true,
         content: {
           "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                avatar: { type: "string", example: "/uploads/new-avatar.jpg" },
-              },
-            },
+            schema: profileSchema,
           },
         },
       },
