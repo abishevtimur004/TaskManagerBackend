@@ -48,7 +48,7 @@ const startServer = async () => {
     });
 
     app.listen(PORT, () => {
-      console.log(`Сервер запущен на http://localhost:${PORT}`);
+      console.log(`Сервер запущен на порту ${PORT}`);
     });
   } catch (error) {
     console.error("Ошибка инициализации сервера:", error.message);
