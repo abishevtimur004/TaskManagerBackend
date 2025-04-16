@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
-import taskRoutes from "./routes/taskRoutes.js"
+import taskRoutes from "./routes/taskRoutes.js";
 import { setupSwagger } from "./swagger.js";
 
 const app = express();
@@ -28,8 +28,8 @@ const startServer = async () => {
 
     app.use(
       cors({
-        // origin: "http://localhost:5173",
-        // credentials: true,
+        origin: "http://localhost:5173",
+        credentials: true,
       })
     );
     app.use(express.json());
@@ -37,7 +37,6 @@ const startServer = async () => {
     app.use("/api/users", userRoutes);
     app.use("/api/profile", profileRoutes);
     app.use("/api/task", taskRoutes);
- 
 
     app.use("/uploads", express.static("uploads"));
 
