@@ -3,7 +3,7 @@ import Task from "../models/task.js";
 export const createTask = async (req, res) => {
   try {
     const { title, description, status } = req.body;
-    const userId = req.userId; // предполагается, что authMiddleware добавляет user
+    const userId = req.userId;
     const newTask = await Task.create({
       title,
       description,
