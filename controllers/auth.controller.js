@@ -32,9 +32,6 @@ export const register = async (req, res) => {
     });
     await profile.save();
 
-    const token = jwt.sign({ userId: user._id }, "secretkey", {
-      expiresIn: "12h",
-    });
     return res.status(201).json({
       message: "Пользователь успешно зарегистрирован",
       user,
