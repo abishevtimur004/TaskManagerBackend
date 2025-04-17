@@ -10,7 +10,7 @@ export function auth(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, "secretkey");
-    req.userId = decoded.userId;
+    req.userId = decoded.id;
     req.isManager = decoded.isManager;
     next();
   } catch (error) {
