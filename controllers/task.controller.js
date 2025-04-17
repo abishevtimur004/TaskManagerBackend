@@ -3,17 +3,15 @@ import Task from "../models/task.js";
 export const createTask = async (req, res) => {
   try {
     const { title, description, status } = req.body;
-    const userId = req.userId;
     const newTask = await Task.create({
       title,
       description,
       status,
-      user: userId,
+      user: req.userId,
     });
     res.status(201).json(newTask);
-    console.log("user from req:", req.user);
   } catch (err) {
-    console.log("user from req:", req.user);
+    console.log("user from req:", req.userId);
 
     res.status(500).json({ message: "Ошибка при создании задачи" });
   }
